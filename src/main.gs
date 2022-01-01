@@ -1,7 +1,3 @@
-// グローバル変数
-const scriptProperties = PropertiesService.getScriptProperties();
-const ACCESS_TOKEN = scriptProperties.getProperty('ACCESS_TOKEN');
-
 // メッセージ受信
 function doPost(e) {
   const json = JSON.parse(e.postData.contents).events[0];
