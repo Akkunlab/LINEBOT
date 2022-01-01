@@ -1,5 +1,6 @@
 // グローバル変数
-const ACCESS_TOKEN = 'xxxxx';
+const scriptProperties = PropertiesService.getScriptProperties();
+const ACCESS_TOKEN = scriptProperties.getProperty('ACCESS_TOKEN');
 
 // メッセージ受信
 function doPost(e) {
