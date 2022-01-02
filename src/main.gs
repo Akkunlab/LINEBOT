@@ -1,12 +1,13 @@
 // メッセージ受信
 function doPost(e) {
   const json = JSON.parse(e.postData.contents).events[0];
+  const postData = createPostData(json); // PostData作成
 
-  fetchData(json);
+  fetchData(postData); // メッセージ送信
 }
 
-// メッセージ送信
-function fetchData(json) {
+// PostData作成
+function createPostData(json) {
   const postData = {
     'replyToken': json.replyToken,
     'messages': [{
@@ -15,6 +16,11 @@ function fetchData(json) {
     }]
   };
 
+  return postData;
+}
+
+// メッセージ送信
+function fetchData(postData) {
   const options = {
     'method': 'post',
     'headers': {
