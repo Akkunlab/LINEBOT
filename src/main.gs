@@ -8,11 +8,23 @@ function doPost(e) {
 
 // PostData作成
 function createPostData(json) {
+  let message = '';
+  const userMessage = json.message.text; // 受信したメッセージ
+
+  switch (true) {
+    case /課題/.test(userMessage):
+      message = '課題です';
+      break;
+    default:
+      message = '登録されていません';
+      break;
+  }
+
   const postData = {
     'replyToken': json.replyToken,
     'messages': [{
       'type':'text',
-      'text':'Hello World!',
+      'text': message,
     }]
   };
 
