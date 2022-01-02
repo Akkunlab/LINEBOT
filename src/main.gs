@@ -1,4 +1,4 @@
-// メッセージ受信
+/* メッセージ受信 */
 function doPost(e) {
   const json = JSON.parse(e.postData.contents).events[0];
   const postData = createPostData(json); // PostData作成
@@ -6,7 +6,7 @@ function doPost(e) {
   fetchData(postData); // メッセージ送信
 }
 
-// PostData作成
+/* PostData作成 */
 function createPostData(json) {
   let message = '';
   const userMessage = json.message.text; // 受信したメッセージ
@@ -31,7 +31,7 @@ function createPostData(json) {
   return postData;
 }
 
-// メッセージ送信
+/* メッセージ送信 */
 function fetchData(postData) {
   const options = {
     'method': 'post',
