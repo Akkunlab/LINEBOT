@@ -4,7 +4,7 @@ function doPost(e) {
   const json = JSON.parse(e.postData.contents).events[0];
   const postData = createPostData(json); // PostData作成
 
-  fetchData(postData); // メッセージ送信
+  fetchData(postData, REPLY_URL); // メッセージ送信
 
   // ログ出力
   sheetLog.appendRow([
@@ -41,7 +41,7 @@ function createPostData(json) {
 }
 
 /* メッセージ送信 */
-function fetchData(postData) {
+function fetchData(postData, url) {
   const options = {
     'method': 'post',
     'headers': {
@@ -51,5 +51,5 @@ function fetchData(postData) {
     'payload': JSON.stringify(postData)
   };
 
-  UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', options);
+  UrlFetchApp.fetch(url, options);
 }
