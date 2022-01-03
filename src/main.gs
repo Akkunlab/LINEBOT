@@ -1,9 +1,18 @@
 /* メッセージ受信 */
 function doPost(e) {
+  const sheetLog = spreadSheet.getSheetByName('ログ'); // ログシート取得
   const json = JSON.parse(e.postData.contents).events[0];
   const postData = createPostData(json); // PostData作成
 
   fetchData(postData); // メッセージ送信
+
+  // ログ出力
+  sheetLog.appendRow([
+    new Date(), // 日付
+    json.message.text, // 受信したメッセージ
+    json.source.userId, // ユーザID
+    json.source.groupId // グループID
+  ]);
 }
 
 /* PostData作成 */
