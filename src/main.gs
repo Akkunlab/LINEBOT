@@ -24,6 +24,27 @@ function createPostData(json) {
     case /課題/.test(userMessage):
       message = '課題です';
       break;
+    case /連絡/.test(userMessage):
+      message = '連絡です';
+      break;
+    case /リマインダー/.test(userMessage):
+      message = 'リマインダーです';
+      break;
+    case /設定/.test(userMessage):
+      message = '設定です';
+      break;
+    case /時間割/.test(userMessage):
+      message = '時間割です';
+      break;
+    case /バス/.test(userMessage):
+      message = 'バスです';
+      break;
+    case /ツール/.test(userMessage):
+      message = 'ツールです';
+      break;
+    case /その他/.test(userMessage):
+      message = 'その他です';
+      break;
     default:
       message = '登録されていません';
       break;
