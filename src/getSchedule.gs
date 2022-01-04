@@ -43,3 +43,11 @@ function getSchedule() {
     sheetRem.appendRow([`${time}${title}`, des]); // 出力
   }
 }
+
+/* トリガーセット */
+function setTrigger() {
+  const time = new Date();
+  time.setHours(20);
+  time.setMinutes(00); 
+  ScriptApp.newTrigger('sendPushMessage').timeBased().at(time).create();
+}
