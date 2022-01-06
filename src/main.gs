@@ -23,7 +23,7 @@ function createPostData(json) {
 
   switch (true) {
     case /^課題$/.test(userMessage):
-      message = '課題です';
+      message = generateKadai();
       break;
     case /^課題\d*$/.test(userMessage):
       message = '課題番号です';
