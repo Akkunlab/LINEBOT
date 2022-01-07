@@ -23,13 +23,13 @@ function createPostData(json) {
 
   switch (true) {
     case /^課題$/.test(userMessage):
-      message = generateKadai();
+      message = generateKadai(); // 課題 PostData生成
       break;
     case /^課題\d*$/.test(userMessage):
       message = '課題番号です';
       break;
     case /^連絡$/.test(userMessage):
-      message = '連絡です';
+      message = generateRenraku(); // 連絡 PostData生成
       break;
     case /^リマインダー$/.test(userMessage):
       message = 'リマインダーです';
