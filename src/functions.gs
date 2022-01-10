@@ -15,7 +15,12 @@ function generateKadai() {
     message = '課題はありません';
   }
 
-  return message;
+  const result = [{
+    'type':'text',
+    'text': message,
+  }];
+
+  return result;
 }
 
 /* 連絡 PostData生成 */
@@ -38,5 +43,10 @@ function generateRenraku() {
     message = '連絡はありません';
   }
 
-  return message;
+  const result = [{
+    'type':'text',
+    'text': message,
+  }];
+
+  return result;
 }

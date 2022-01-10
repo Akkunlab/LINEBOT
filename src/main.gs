@@ -23,43 +23,40 @@ function createPostData(json) {
 
   switch (true) {
     case /^課題$/.test(userMessage):
-      message = generateKadai(); // 課題 PostData生成
+      messages = generateKadai(); // 課題 PostData生成
       break;
     case /^課題\d*$/.test(userMessage):
-      message = '課題番号です';
+      messages = '課題番号です';
       break;
     case /^連絡$/.test(userMessage):
-      message = generateRenraku(); // 連絡 PostData生成
+      messages = generateRenraku(); // 連絡 PostData生成
       break;
     case /^リマインダー$/.test(userMessage):
-      message = 'リマインダーです';
+      messages = 'リマインダーです';
       break;
     case /^設定$/.test(userMessage):
-      message = '設定です';
+      messages = '設定です';
       break;
     case /^時間割$/.test(userMessage):
-      message = '時間割です';
+      messages = '時間割です';
       break;
     case /^バス$/.test(userMessage):
-      message = 'バスです';
+      messages = 'バスです';
       break;
     case /^ツール$/.test(userMessage):
-      message = 'ツールです';
+      messages = 'ツールです';
       break;
     case /^その他$/.test(userMessage):
-      message = 'その他です';
+      messages = 'その他です';
       break;
     default:
-      message = '登録されていません';
+      messages = '登録されていません';
       break;
   }
 
   const postData = {
     'replyToken': json.replyToken,
-    'messages': [{
-      'type':'text',
-      'text': message,
-    }]
+    'messages': messages
   };
 
   return postData;
