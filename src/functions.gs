@@ -1,3 +1,13 @@
+/* テキスト PostData生成 */
+function generateText(message) {
+  const result = [{
+    'type':'text',
+    'text': message,
+  }];
+
+  return result;
+}
+
 /* 課題 PostData生成 */
 function generateKadai() {
   let message = `    　  [ 課題 ]    　  `;

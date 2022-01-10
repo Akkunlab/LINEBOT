@@ -18,7 +18,7 @@ function doPost(e) {
 
 /* PostData作成 */
 function createPostData(json) {
-  let message = '';
+  let messages = '';
   const userMessage = json.message.text; // 受信したメッセージ
 
   switch (true) {
@@ -26,31 +26,31 @@ function createPostData(json) {
       messages = generateKadai(); // 課題 PostData生成
       break;
     case /^課題\d*$/.test(userMessage):
-      messages = '課題番号です';
+      messages = generateText('課題番号です');
       break;
     case /^連絡$/.test(userMessage):
       messages = generateRenraku(); // 連絡 PostData生成
       break;
     case /^リマインダー$/.test(userMessage):
-      messages = 'リマインダーです';
+      messages = generateText('リマインダーです');
       break;
     case /^設定$/.test(userMessage):
-      messages = '設定です';
+      messages = generateText('設定です');
       break;
     case /^時間割$/.test(userMessage):
-      messages = '時間割です';
+      messages = generateText('時間割です');
       break;
     case /^バス$/.test(userMessage):
-      messages = 'バスです';
+      messages = generateText('バスです');
       break;
     case /^ツール$/.test(userMessage):
-      messages = 'ツールです';
+      messages = generateText('ツールです');
       break;
     case /^その他$/.test(userMessage):
-      messages = 'その他です';
+      messages = generateText('その他です');
       break;
     default:
-      messages = '登録されていません';
+      messages = generateText('登録されていません');
       break;
   }
 
