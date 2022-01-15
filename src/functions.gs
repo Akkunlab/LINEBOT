@@ -1,7 +1,7 @@
 /* テキスト PostData生成 */
 function generateText(message) {
   const result = [{
-    'type':'text',
+    'type': 'text',
     'text': message,
   }];
 
@@ -37,7 +37,7 @@ function generateKadai() {
   }
 
   const result = [{
-    'type':'text',
+    'type': 'text',
     'text': message,
   }];
 
@@ -65,7 +65,7 @@ function generateRenraku() {
   }
 
   const result = [{
-    'type':'text',
+    'type': 'text',
     'text': message,
   }];
 
