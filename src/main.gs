@@ -50,7 +50,7 @@ function createPostData(json) {
       messages = generateText('その他です');
       break;
     default:
-      messages = generateText('登録されていません');
+      messages = generateImage(IMG_UNREGISTERED);
       break;
   }
 

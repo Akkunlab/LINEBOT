@@ -8,6 +8,17 @@ function generateText(message) {
   return result;
 }
 
+/* 画像 PostData生成 */
+function generateImage(image) {
+  const result = [{
+    'type': 'image',
+    'originalContentUrl': image,
+    'previewImageUrl': image
+  }];
+
+  return result;
+}
+
 /* 課題 PostData生成 */
 function generateKadai() {
   let message = `    　  [ 課題 ]    　  `;
