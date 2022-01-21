@@ -5,5 +5,6 @@ const ACCESS_TOKEN = scriptProperties.getProperty('ACCESS_TOKEN'); // LINE Messa
 const CALENDAR_ID = scriptProperties.getProperty('CALENDAR_ID'); // GoogleカレンダーID
 const CALENDAR_REM_ID = scriptProperties.getProperty('CALENDAR_REM_ID'); // GoogleカレンダーID（リマインダー用）
 const IMG_UNREGISTERED = scriptProperties.getProperty('IMG_UNREGISTERED'); // 未登録時に表示される画像
+const IMG_TIMETABLE = scriptProperties.getProperty('IMG_TIMETABLE'); // 時間割
 const REPLY_URL = 'https://api.line.me/v2/bot/message/reply'; // リプライURL
 const MULTICAST_URL = 'https://api.line.me/v2/bot/message/multicast'; // マルチキャストURL（Push）

@@ -38,7 +38,7 @@ function createPostData(json) {
       messages = generateText('設定です');
       break;
     case /^時間割$/.test(userMessage):
-      messages = generateText('時間割です');
+      messages = generateImage(IMG_TIMETABLE);
       break;
     case /^バス$/.test(userMessage):
       messages = generateText('バスです');
