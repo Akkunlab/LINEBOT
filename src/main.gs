@@ -49,6 +49,9 @@ function createPostData(json) {
     case /^その他$/.test(userMessage):
       messages = generateText('その他です');
       break;
+    case /^ブロック$/.test(userMessage):
+      messages = generateText('ブロックです');
+      break;
     default:
       messages = generateImage(IMG_UNREGISTERED);
       break;
