@@ -35,7 +35,18 @@ function createPostData(json) {
       messages = generateText('リマインダーです');
       break;
     case /^設定$/.test(userMessage):
-      messages = generateText('設定です');
+      messages = generateTemplate(2, [{
+        'title': 'リマインダー設定',
+        'text': '以下から選択して下さい',
+      },{
+        'type': 'uri',
+        'label': '登録',
+        'value': `https://www.youtube.com/`
+      },{
+        'type': 'uri',
+        'label': '削除',
+        'value': `https://www.youtube.com/`
+      }]);
       break;
     case /^時間割$/.test(userMessage):
       messages = generateImage(IMG_TIMETABLE);
@@ -44,10 +55,36 @@ function createPostData(json) {
       messages = generateText('バスです');
       break;
     case /^ツール$/.test(userMessage):
-      messages = generateText('ツールです');
+      messages = generateTemplate(3, [{
+        'title': 'ツール',
+        'text': '以下から選択して下さい',
+      },{
+        'type': 'uri',
+        'label': '説明',
+        'value': `https://www.youtube.com/`
+      },{
+        'type': 'uri',
+        'label': '設定',
+        'value': `https://www.youtube.com/`
+      },{
+        'type': 'uri',
+        'label': '統計',
+        'value': `https://www.youtube.com/`
+      }]);
       break;
     case /^その他$/.test(userMessage):
-      messages = generateText('その他です');
+      messages = generateTemplate(2, [{
+        'title': 'その他',
+        'text': '以下から選択して下さい',
+      },{
+        'type': 'message',
+        'label': '時間割',
+        'value': '時間割'
+      },{
+        'type': 'message',
+        'label': 'グループ送信',
+        'value': 'グループ送信'
+      }]);
       break;
     case /^ブロック$/.test(userMessage):
       messages = generateText('ブロックです');

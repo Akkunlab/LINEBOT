@@ -95,10 +95,6 @@ function generateKadaiNumber(userMessage) {
     'quickReply': { 'items': quickReplyItemList }
   }];
 
-  // ログ出力
-  const sheetLog = spreadSheet.getSheetByName('ログ'); // ログシート取得
-  sheetLog.appendRow([JSON.stringify([result])]);
-
   return result;
 }
 
@@ -125,6 +121,35 @@ function generateRenraku() {
   const result = [{
     'type': 'text',
     'text': message,
+  }];
+
+  return result;
+}
+
+/* テンプレート PostData生成 */
+function generateTemplate(actionLength, item) {
+  let action;
+  const actions = [];
+
+  // action追加
+  for (let i = 1; i <= actionLength; i++) {
+    action = {
+      'type': item[i].type,
+      'label': item[i].label,
+    };
+    item[i].type === 'uri' ? action.uri = item[i].value : action.text = item[i].value; // uriとtextの区別
+    actions.push(action);
+  }
+
+  const result = [{
+    'type': 'template',
+    'altText': 'select',
+    'template': {
+      'type': 'buttons',
+      'title': item[0].title,
+      'text': item[0].text,
+      'actions': actions
+    }
   }];
 
   return result;
