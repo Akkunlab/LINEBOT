@@ -21,7 +21,9 @@ function generateImage(image) {
 
 /* 課題 PostData生成 */
 function generateKadai() {
+  let item;
   let message = `    　  [ 課題 ]    　  `;
+  const quickReplyItemList = [];
   const sheetKadai = spreadSheet.getSheetByName('課題'); // 課題シート取得
   const lastRow = sheetKadai.getRange('A:A').getValues().filter(String).length; // 最終行を取得
 
@@ -36,10 +38,29 @@ function generateKadai() {
     message = '課題はありません';
   }
 
+  // quickReplyを10個追加
+  for (let i = 1; i <= 10; i++) {
+    item = {
+      'type': 'action',
+      'imageUrl': '',
+      'action': {
+        'type': 'message',
+        'label': i,
+        'text': `課題${i}`
+      }
+    };
+    quickReplyItemList.push(item);
+  }
+
   const result = [{
     'type': 'text',
     'text': message,
+    'quickReply': { 'items': quickReplyItemList }
   }];
+
+  // ログ出力
+  const sheetLog = spreadSheet.getSheetByName('ログ'); // ログシート取得
+  sheetLog.appendRow([JSON.stringify([result])]);
 
   return result;
 }
