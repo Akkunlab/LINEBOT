@@ -18,7 +18,7 @@ function doPost(e) {
 
 /* PostData作成 */
 function createPostData(json) {
-  let messages = '';
+  let messages;
   const userMessage = json.message.text; // 受信したメッセージ
 
   switch (true) {
