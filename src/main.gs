@@ -26,7 +26,7 @@ function createPostData(json) {
       messages = generateKadai(); // 課題 PostData生成
       break;
     case /^課題\d*$/.test(userMessage):
-      messages = generateText('課題番号です');
+      messages = generateKadaiNumber(userMessage); // 課題番号 PostData生成
       break;
     case /^連絡$/.test(userMessage):
       messages = generateRenraku(); // 連絡 PostData生成

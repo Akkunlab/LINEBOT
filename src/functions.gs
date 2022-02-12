@@ -58,6 +58,43 @@ function generateKadai() {
     'quickReply': { 'items': quickReplyItemList }
   }];
 
+  return result;
+}
+
+/* 課題番号 PostData生成 */
+function generateKadaiNumber(userMessage) {
+  let item;
+  const number = Number(userMessage.replace('課題', '')); // 課題番号
+  const quickReplyItemList = [];
+  const sheetKadai = spreadSheet.getSheetByName('課題'); // 課題シート取得
+  const kadai = sheetKadai.getRange(`A${number}`).getValue(); // 番号の課題取得
+
+  if (kadai) { // 課題があるとき
+    message = `${kadai}\n${sheetKadai.getRange(`B${number}`).getValue()}`; // 課題の詳細を取得
+  } else { // 課題がないとき
+    message = '課題はありません';
+  }
+
+  // quickReplyを10個追加
+  for (let i = 1; i <= 10; i++) {
+    item = {
+      'type': 'action',
+      'imageUrl': '',
+      'action': {
+        'type': 'message',
+        'label': i,
+        'text': `課題${i}`
+      }
+    };
+    quickReplyItemList.push(item);
+  }
+
+  const result = [{
+    'type': 'text',
+    'text': message,
+    'quickReply': { 'items': quickReplyItemList }
+  }];
+
   // ログ出力
   const sheetLog = spreadSheet.getSheetByName('ログ'); // ログシート取得
   sheetLog.appendRow([JSON.stringify([result])]);
