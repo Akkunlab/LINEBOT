@@ -1,3 +1,35 @@
+/* ユーザ認証 */
+function userAuthentication(userId) {
+  const sheetStats = spreadSheet.getSheetByName('統計'); // 統計シート取得
+  const user = findRow(sheetStats, userId, 2); // ユーザ情報
+
+  if (user) {
+    characterType = user[5]; // キャラタイプを更新
+  }
+}
+
+/* 行検索 */
+function findRow(sheet, value, column) {
+  const data = sheet.getDataRange().getValues(); // データ
+
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][column - 1] === value) return data[i];
+  }
+
+  return 0;
+}
+
+/* 画像 PostData生成 */
+function generateImage(image) {
+  const result = [{
+    'type': 'image',
+    'originalContentUrl': image,
+    'previewImageUrl': image
+  }];
+
+  return result;
+}
+
 /* テキスト PostData生成 */
 function generateText(message) {
   const result = [{

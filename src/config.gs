@@ -9,3 +9,5 @@ const IMG_TIMETABLE = scriptProperties.getProperty('IMG_TIMETABLE'); // 時間�
 const BUS_DATA = scriptProperties.getProperty('BUS_DATA'); // バスのFlex Messageデータ
 const REPLY_URL = 'https://api.line.me/v2/bot/message/reply'; // リプライURL
 const MULTICAST_URL = 'https://api.line.me/v2/bot/message/multicast'; // マルチキャストURL（Push）
+
+let characterType = 'normal'; // キャラタイプ
