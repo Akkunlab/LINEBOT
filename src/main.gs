@@ -52,7 +52,7 @@ function createPostData(json) {
       messages = generateImage(IMG_TIMETABLE);
       break;
     case /^バス$/.test(userMessage):
-      messages = generateText('バスです');
+      messages = JSON.parse(BUS_DATA); // BUS_DATAを返信
       break;
     case /^ツール$/.test(userMessage):
       messages = generateTemplate(3, [{
