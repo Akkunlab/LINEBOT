@@ -87,7 +87,7 @@ function createPostData(json) {
       }]);
       break;
     case /^ブロック$/.test(userMessage):
-      messages = generateText('ブロックです');
+      messages = generateText('現在あなたはブロックされているためRABOTを使用できません');
       break;
     default:
       messages = generateImage(IMG_UNREGISTERED);
