@@ -41,11 +41,11 @@ function createPostData(json) {
       },{
         'type': 'uri',
         'label': '登録',
-        'value': `https://www.youtube.com/`
+        'value': WEBSITE_URL
       },{
         'type': 'uri',
         'label': '削除',
-        'value': `https://www.youtube.com/`
+        'value': WEBSITE_URL
       }]);
       break;
     case /^時間割$/.test(userMessage):
@@ -61,15 +61,15 @@ function createPostData(json) {
       },{
         'type': 'uri',
         'label': '説明',
-        'value': `https://www.youtube.com/`
+        'value': WEBSITE_URL
       },{
         'type': 'uri',
         'label': '設定',
-        'value': `https://www.youtube.com/`
+        'value': WEBSITE_URL
       },{
         'type': 'uri',
         'label': '統計',
-        'value': `https://www.youtube.com/`
+        'value': WEBSITE_URL
       }]);
       break;
     case /^その他$/.test(userMessage):
