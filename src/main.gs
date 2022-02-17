@@ -1,8 +1,11 @@
 /* メッセージ受信 */
 function doPost(e) {
+  let postData;
   const json = JSON.parse(e.postData.contents).events[0];
-  const postData = createPostData(json); // PostData作成
+  const user = userAuthentication(json.source.userId); // ユーザ認証
+  const block = { message: { text: 'ブロック' }, replyToken: json.replyToken };
 
+  postData = createPostData(user < 0 ? block : json); // ブロック済みかどうかで分岐
   fetchData(postData, REPLY_URL); // メッセージ送信
 
   // ログ出力

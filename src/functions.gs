@@ -3,9 +3,16 @@ function userAuthentication(userId) {
   const sheetStats = spreadSheet.getSheetByName('統計'); // 統計シート取得
   const user = findRow(sheetStats, userId, 2); // ユーザ情報
 
-  if (user) {
-    characterType = user[5]; // キャラタイプを更新
-  }
+  // 未登録の場合
+  if (!user) return 0;
+
+  // ブロック済みの場合
+  if (user[6]) return -1;
+
+  // 登録済みの場合
+  characterType = user[5]; // キャラタイプを更新
+
+  return 1;
 }
 
 /* 行検索 */
