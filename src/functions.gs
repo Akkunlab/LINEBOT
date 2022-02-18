@@ -10,7 +10,7 @@ function userAuthentication(userId) {
   if (user[6]) return -1;
 
   // 登録済みの場合
-  characterType = user[5]; // キャラタイプを更新
+  userData.type = user[5]; // キャラタイプを更新
 
   return 1;
 }

@@ -11,4 +11,7 @@ const WEBSITE_URL = scriptProperties.getProperty('WEBSITE_URL'); // Webサイト
 const REPLY_URL = 'https://api.line.me/v2/bot/message/reply'; // リプライURL
 const MULTICAST_URL = 'https://api.line.me/v2/bot/message/multicast'; // マルチキャストURL（Push）
 
-let characterType = 'normal'; // キャラタイプ
+const userData = {
+  number: 0, // 個人番号
+  type: 'normal', // キャラタイプ
+};
