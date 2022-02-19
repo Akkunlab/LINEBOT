@@ -20,7 +20,10 @@ function findRow(sheet, value, column) {
   const data = sheet.getDataRange().getValues(); // データ
 
   for (let i = 1; i < data.length; i++) {
-    if (data[i][column - 1] === value) return data[i];
+    if (data[i][column - 1] === value) {
+      userData.number = i; // 個人番号を更新
+      return data[i];
+    }
   }
 
   return 0;
