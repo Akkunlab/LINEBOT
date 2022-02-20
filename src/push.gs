@@ -10,3 +10,9 @@ function sendPushMessage(userList, message) {
 
   fetchData(postData, MULTICAST_URL); // メッセージ送信
 }
+
+/* Usage */
+// const userList = ['userID1', 'userID2'];
+// const message = 'Hello World!';
+
+// sendPushMessage(userList, message);
