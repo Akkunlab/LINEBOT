@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" media="all" href="./assets/css/main.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<title>予定登録 | RABOT</title>
+	<style>
+	.main {
+		text-align: center;
+		height: 650px;
+	}
+	.settings {
+		position: relative;
+		margin: 50px 10px;
+	}
+	.item_name {
+		position: absolute;
+		top: -45px;
+		left: -20px;
+	}
+	.settings input {
+		width: 99%;
+		height: 30px;
+		margin-bottom: 10px;
+		border-style: solid;
+  		border-color: Gray;
+  		border-width: 0px 0px 2px 0px;
+	}
+	select {
+		width: 100%;
+		background: white!important;
+		color: black!important;
+		margin-bottom: 10px;
+	}
+	</style>
+</head>
+
+<body>
+
+	<header>
+		<img src="./assets/images/RABOT_Logo_wh.png" width="200" height="75" alt="logo">
+	</header>
+	
+	<div class="main">
+		<h1>予定登録</h1>
+	    <form class="form1" name="form1">
+			<div class="settings">
+				<div class="select-wrap select-primary">
+					<label class="item_name">予定</label>
+					<select name="yotei">
+						<option value="課題">課題</option>
+						<option value="連絡">連絡</option>
+					</select>
+				</div>
+				<div class="select-wrap select-primary">
+					<label class="item_name">日付</label>
+					<input type="date" name="date" required>
+				</div>
+				<div class="select-wrap select-primary">
+					<label class="item_name">タイトル</label>
+					<input type="text" id="title" name="title">
+					<select id="kadai">
+						<option value="技術者倫理">技術者倫理</option>
+						<option value="卒業研究">卒業研究</option>
+						<option value="電力工学">電力工学</option>
+						<option value="電力システム工学">電力システム工学</option>
+						<option value="電子工学Ⅱ">電子工学Ⅱ</option>
+						<option value="工業英語Ⅱ">工業英語Ⅱ</option>
+						<option value="数理解析学Ⅱ">数理解析学Ⅱ</option>
+						<option value="知的財産権">知的財産権</option>
+						<option value="電気実験">電気電子システム工学実験</option>
+					</select>
+				</div>
+				<div class="select-wrap select-primary">
+					<label class="item_name">説明</label>
+					<input type="text" name="des" required>
+				</div>
+			</div>
+			<input class="button" type="submit" value="登録">
+		</form>
+		<h2 id="hoge"></h2>
+	</div>
+
+	<footer>
+		<p>&copy; R&A</p>
+	</footer>
+
+	<script>
+		// パラメータ
+		var param_a = location.search;
+		if (param_a == "") param_a = "?id=0"
+
+		// 課題時タイトル
+		$('#kadai').change(function() { $('#title').val( $(this).val() ); });
+
+		// GASと連携
+		const url = "https://script.google.com/macros/s/AKfycbzM6CT4bVbZIz2n2lCLqKFVVc0yVBttcsanKqjgcj2GP0vjrYFs/exec" + param_a + "&api=add";
+		fetch(url , {
+		  method: "GET",
+		}).then(response => response.text())
+		.then(text => {
+		  document.getElementById("hoge").innerText = text;
+		});
+	</script>
+
+</body>
+
+</html>

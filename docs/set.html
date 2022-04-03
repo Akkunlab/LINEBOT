@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" media="all" href="./assets/css/main.css">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+	<title>設定 | RABOT</title>
+</head>
+
+<body>
+
+	<header>
+		<img src="./assets/images/RABOT_Logo_wh.png" width="200" height="75" alt="logo">
+	</header>
+	
+	<div class="main">
+		<h1>設定</h1>
+	    <form name="form1">
+			<div class="settings">
+				<h2 class="cat_name">ユーザ</h2>
+				<div class="select-wrap select-primary">
+					<label class="item_name">キャラ</label>
+					<select id="typebk" name="type">
+						<option value="0">ノーマル</option>
+						<option value="1">いもうと</option>
+					</select>
+				</div>
+			</div>
+			<div class="settings">
+				<h2 class="cat_name">通知</h2>
+				<div class="switch">
+					<label class="item_name">前日通知機能</label>
+					<label class="switch__label">
+						<input id="id" type="hidden" name="id" checked="checked">
+						<input type="checkbox" name="notice1" id="noticebk" value="1" checked="checked">
+					  	<span class="switch__content"></span>
+						<span class="switch__circle"></span>
+					</label>
+				</div>
+			</div>
+			<!--<div class="settings">
+				<h2 class="cat_name">デザイン</h2>
+				<div class=bg_image>
+					<p class="item_name">背景画像</p>
+					<div>
+						<p>1</p>
+						<input type="radio" id="bg_image1" name="bg_image" value="1">
+						<label for="bg_image1"><img src="images/Spring.jpg" alt="1" width="120px"></label>
+					</div>
+					<div>
+						<p>2</p>
+						<input type="radio" id="bg_image2" name="bg_image" value="2">
+						<label for="bg_image2"><img src="images/Summer.png" alt="2" width="120px" height="81px"></label>
+					</div>
+					<div>
+						<p>3</p>
+						<input type="radio" id="bg_image3" name="bg_image" value="3">
+						<label for="bg_image3"><img src="images/Autumn.jpg" alt="3" width="120px"></label>
+					</div>
+					<div>
+						<p>4</p>
+						<input type="radio" id="bg_image4" name="bg_image" value="4">
+						<label for="bg_image4"><img src="images/Winter.jpg" alt="4" width="120px"></label>
+					</div>
+				</div>
+				<div class=bg_template>
+					<p class="item_name">テンプレート</p>
+					<div>
+						<p>1</p>
+						<input type="radio" id="bg_template1" name="bg_template" value="1">
+						<label for="bg_template1"><img src="images/template5.png" alt="1" width="120px" style="border: solid 1px;"></label>
+					</div>
+					<div>
+						<p>2</p>
+						<input type="radio" id="bg_template2" name="bg_template" value="2">
+						<label for="bg_template2"><img src="images/template6.png" alt="2" width="120px" height="81px" style="border: solid 1px;"></label>
+					</div>
+				</div>
+				<div>
+					<p class="item_name">出力</p>
+					<div id="output">
+						<canvas id=output_image></canvas>
+						<canvas id=output_template></canvas>
+						<canvas id=output_result></canvas>
+					</div>
+				</div>
+				<div class="command">
+					<p class="item_name">コマンド<button type="button" id="commands_reset">リセット</button></p>
+					<ul class="commands">
+						<li class=item><p>課題</p></li>
+						<li class=item><p>連絡</p></li>
+						<li class=item><p>リマインダー</p></li>
+					</ul>
+				</div>
+			</div>-->
+			<input class="button" type="submit" value="更新">
+		</form>
+		<h2 id="hoge"></h2>
+	</div>
+
+	<footer>
+		<p>&copy; R&A</p>
+	</footer>
+
+	<script>
+		// パラメータ
+		var kv, param_a = location.search;
+		var param = new Object;
+		var pair = location.search.substring(1).split('&');
+		for (var i = 0; pair[i]; i++) {
+			kv = pair[i].split('=');
+			param[kv[0]] = kv[1];
+		}
+
+		// 値保持
+		if ( param.notice1 == undefined ) $('#noticebk').prop("checked", false);
+		if ( param.type == 1 ) $("#typebk").val("1");
+		if (param.type !== undefined && !noticebk.checked) param_a += "&notice1=0";
+		document.getElementById("id").value = param.id;
+
+		// GASと連携
+		if (param_a == "") param_a = "?id=0";
+		console.log(param_a);
+		const url = "https://script.google.com/macros/s/AKfycbzM6CT4bVbZIz2n2lCLqKFVVc0yVBttcsanKqjgcj2GP0vjrYFs/exec" + param_a + "&api=set";
+		fetch(url , {
+		  method: "GET",
+		}).then(response => response.text())
+		.then(text => {
+		  document.getElementById("hoge").innerText = text;
+		});
+
+		// デザイン
+        /*$(".item").draggable({
+            cursor: "move",
+            cursorAt: { top: 25, left: 70 }
+            //snap: '#jquery-ui-draggable-snap',
+            //snapTolerance: 30 ,
+        });
+
+		// コマンド
+		$("#commands_reset").click(function() {
+			$(".item").css( {"top": 0, "left": 0} );
+		});
+
+		// 背景画像
+		$("#bg_image1").click(function() { imageDraw("output_image", "images/Spring.jpg"); });
+		$("#bg_image2").click(function() { imageDraw("output_image", "images/Summer.png"); });
+		$("#bg_image3").click(function() { imageDraw("output_image", "images/Autumn.jpg"); });
+		$("#bg_image4").click(function() { imageDraw("output_image", "images/Winter.jpg"); });
+
+		// テンプレート
+		$("#bg_template1").click(function() { imageDraw("output_template", "images/template5.png"); });
+		$("#bg_template2").click(function() { imageDraw("output_template", "images/template6.png"); });
+
+		// Canvas
+		function imageDraw(id, img_url) {
+
+		  	var ctx = document.getElementById(id).getContext('2d');
+		  	var img = new Image();
+
+			ctx.clearRect(0, 0, ctx.canvas.clientWidth, ctx.canvas.clientHeight);
+		  	img.src = img_url;
+		  	img.onload = function(){
+		    	ctx.drawImage(img, 0, 0, 300, 150);
+		  	}
+		}
+
+		var createImage= function(context){
+		  var image = new Image();
+		  image = context.toDataURL( "image/jpeg", 0.75 );
+		  return image;
+		}
+
+		// canvasを画像で保存
+		$("#download").click(function(){
+
+			var ctx = document.getElementById('output_image');
+		  	var ctx2 = document.getElementById('output_result').getContext('2d');
+
+			ctx2.drawImage( createImage(ctx),0,0 );
+
+			var canvas = document.getElementById('output_result');
+      		var base64 = canvas.toDataURL("image/jpeg");
+     		document.getElementById("download").href = base64;
+
+   		});*/
+		
+	</script>
+
+</body>
+
+</html>

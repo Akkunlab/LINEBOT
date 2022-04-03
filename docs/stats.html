@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" media="all" href="./assets/css/style.css">
+    <title>統計 | RABOT</title>
+</head>
+
+<body>
+
+    <header>
+      <img src="./assets/images/RABOT_Logo_wh.png" width="200" height="75" alt="logo">
+    </header>
+
+    <div class=main>
+    	<h1 id="hoge">あなたの統計</h1>
+    </div>
+
+    <footer>
+        <p>&copy; R&A</p>
+    </footer>
+
+    <script>
+        // GASと連携
+        var param = location.search;
+        if (param == "") param = "?id=0";
+        const url = "https://script.google.com/macros/s/AKfycbzM6CT4bVbZIz2n2lCLqKFVVc0yVBttcsanKqjgcj2GP0vjrYFs/exec"+ param + "&api=stats";
+        fetch(url , {
+          method: "GET",
+        }).then(response => response.text())
+        .then(text => {
+          document.getElementById("hoge").innerText = text;
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" media="all" href="./assets/css/main.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<title>リマインダー登録 | RABOT</title>
+	<style>
+	.main {
+		text-align: center;
+		height: 600px;
+	}
+	.settings {
+		position: relative;
+		margin: 50px 10px;
+	}
+	.item_name {
+		position: absolute;
+		top: -45px;
+		left: -20px;
+	}
+	.settings input {
+		width: 99%;
+		height: 30px;
+		margin-bottom: 10px;
+		border-style: solid;
+  		border-color: Gray;
+  		border-width: 0px 0px 2px 0px;
+	}
+	</style>
+</head>
+
+<body>
+
+	<header>
+		<img src="./assets/images/RABOT_Logo_wh.png" width="200" height="75" alt="logo">
+	</header>
+	
+	<div class="main">
+		<h1>リマインダー登録</h1>
+	    <form class="form1" name="form1">
+			<div class="settings">
+				<div class="select-wrap select-primary">
+					<label class="item_name">日付</label>
+					<input type="date" name="date" required>
+				</div>
+				<div class="select-wrap select-primary">
+					<label class="item_name">タイトル</label>
+					<input type="text" name="title" required>
+				</div>
+				<div class="select-wrap select-primary">
+					<label class="item_name">説明</label>
+					<input type="text" name="des" required>
+					<input id="id" type="hidden" name="id" checked="checked">
+				</div>
+			</div>
+			<input class="button" type="submit" value="登録">
+		</form>
+		<h2 id="hoge"></h2>
+	</div>
+
+	<footer>
+		<p>&copy; R&A</p>
+	</footer>
+
+	<script>
+		// パラメータ
+		var kv, param_a = location.search;
+		var param = new Object;
+		var pair = location.search.substring(1).split('&');
+		for (var i = 0; pair[i]; i++) {
+			kv = pair[i].split('=');
+			param[kv[0]] = kv[1];
+		}
+		
+		// 値保持
+		document.getElementById("id").value = param.id;
+
+		// 更新
+		/*$('.button').click(function() {
+    		$('.form1').html('<h1>登録完了しました！<h1>');
+		})*/
+
+		// GASと連携
+		if (param_a == "") param_a = "?id=0";
+		const url = "https://script.google.com/macros/s/AKfycbzM6CT4bVbZIz2n2lCLqKFVVc0yVBttcsanKqjgcj2GP0vjrYFs/exec" + param_a + "&api=rem_add";
+		fetch(url , {
+		  method: "GET",
+		}).then(response => response.text())
+		.then(text => {
+		  document.getElementById("hoge").innerText = text;
+		});
+	</script>
+
+</body>
+
+</html>
